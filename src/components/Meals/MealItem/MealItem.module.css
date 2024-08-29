@@ -1,8 +1,9 @@
 .meal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid #ccc;
 }
 

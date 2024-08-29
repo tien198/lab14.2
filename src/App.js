@@ -1,11 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Layout/Header';
+import AvailableMeals from './components/Meals/AvailableMeals';
+
+// data 
+import { DUMMY_MEALS } from './dummyData';
 
 function App() {
   return (
-    <div>
-
-    </div>
+    <>
+      <Header />
+      <AvailableMeals DUMMY_MEALS={DUMMY_MEALS} />
+    </>
   );
 }
 
