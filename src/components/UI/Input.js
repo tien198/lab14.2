@@ -8,7 +8,6 @@ function Input(props) {
                 Amount
                 <input type='number' className='ml-4' />
             </label>
-            <button className='bg-main text-white font-semibold rounded-xl px-8 py-1'>+ Add</button>
         </div>
     );
 }

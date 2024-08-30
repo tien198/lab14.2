@@ -12,8 +12,7 @@ function MealItem({ item }) {
             </div>
             <form>
                 <Input />
-
-
+                <button className='bg-main text-white font-semibold rounded-xl px-8 py-1'>+ Add</button>
             </form>
         </div>
     );
