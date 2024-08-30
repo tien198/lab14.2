@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './MealItem.module.css'
 import Input from '../../UI/Input';
+import MealItemForm from './MealItemForm';
 
 function MealItem({ item }) {
+    const [amount, setAmount] = useState(0)
+    function onChangeVal(e) {
+        setAmount(e.target.value)
+    }
     return (
         <div className={styles.meal}>
             <div className='flex flex-col gap-1'>
@@ -10,10 +15,10 @@ function MealItem({ item }) {
                 <span className={styles.description}>{item.description}</span>
                 <span className={styles.price}>${item.price}</span>
             </div>
-            <form>
-                <Input />
-                <button className='bg-main text-white font-semibold rounded-xl px-8 py-1'>+ Add</button>
-            </form>
+            <MealItemForm item={item} itemAmount={amount}>
+                <Input inputVal={amount} onChangeVal={onChangeVal} />
+                <button>+ Add</button>
+            </MealItemForm>
         </div>
     );
 }

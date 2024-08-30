@@ -30,9 +30,22 @@ function cartReducer(state, action) {
     }
     return items
 }
-
+const testData = [{
+    id: 'm1',
+    name: 'Sushi',
+    description: 'Finest fish and veggies',
+    price: 22.99,
+    quantity: 1
+},
+{
+    id: 'm2',
+    name: 'Schnitzel',
+    description: 'A german specialty!',
+    price: 16.5,
+    quantity: 1
+},]
 function CartProvider({ children }) {
-    const [itemsState, dispathItemsState] = useReducer(cartReducer, [])
+    const [itemsState, dispathItemsState] = useReducer(cartReducer, [...testData])
 
     function addToCart(id) {
         dispathItemsState({

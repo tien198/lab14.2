@@ -3,6 +3,7 @@ import styles from './CartItem.module.css'
 
 function CartItem({ item }) {
     const { name, price, quantity } = item
+
     return (
         <div className={styles['cart-item']}>
             <div>

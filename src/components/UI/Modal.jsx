@@ -1,12 +1,18 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { createContext, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 // css
 import styles from './Modal.module.css'
 
+export const ModalContext = createContext({
+    hidden: '',
+    open: () => { },
+    close: () => { }
+})
 
 
 const Modal = forwardRef(function Modal({ children }, ref) {
     const [hidden, setHidden] = useState('hidden')
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hide()
@@ -28,14 +34,21 @@ const Modal = forwardRef(function Modal({ children }, ref) {
             }
         }
     })
+    const contextVal = {
+        hidden,
+        open: show,
+        close: hide
+    }
 
     return createPortal(
-        <div className={hidden} >
-            <div className={styles.backdrop} onClick={hide}></div>
-            <div className={styles.modal}>
-                {children}
+        <ModalContext.Provider value={contextVal}>
+            <div className={hidden} >
+                <div className={styles.backdrop} onClick={hide}></div>
+                <div className={styles.modal}>
+                    {children}
+                </div>
             </div>
-        </div>,
+        </ModalContext.Provider>,
         document.getElementById('modal')
     )
 })
