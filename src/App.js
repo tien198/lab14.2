@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/Layout/Header';
 import AvailableMeals from './components/Meals/AvailableMeals';
-import CartProvider from './store/CartProvider';
+import { CartProvider } from './store/cart-context';
 
 // data 
 import { DUMMY_MEALS } from './dummyData';

@@ -2,11 +2,23 @@ import React, { useContext, useState } from 'react';
 import styles from './MealItem.module.css'
 import Input from '../../UI/Input';
 import MealItemForm from './MealItemForm';
+import { CartContext } from '../../../store/cart-context';
 
 function MealItem({ item }) {
+    const { addToCart } = useContext(CartContext)
     const [amount, setAmount] = useState(0)
+
     function onChangeVal(e) {
         setAmount(e.target.value)
+    }
+    function onSubmit(e) {
+        e.preventDefault()
+        const addedItem = { ...item, quantity: Number(amount) }
+        addToCart(addedItem, amount)
+        clearInput()
+    }
+    function clearInput() {
+        setAmount(0)
     }
     return (
         <div className={styles.meal}>
@@ -15,8 +27,8 @@ function MealItem({ item }) {
                 <span className={styles.description}>{item.description}</span>
                 <span className={styles.price}>${item.price}</span>
             </div>
-            <MealItemForm item={item} itemAmount={amount}>
-                <Input inputVal={amount} onChangeVal={onChangeVal} />
+            <MealItemForm onSubmit={onSubmit}>
+                <Input type='number' inputVal={amount} onChangeVal={onChangeVal} min={0} />
                 <button>+ Add</button>
             </MealItemForm>
         </div>

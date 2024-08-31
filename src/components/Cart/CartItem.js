@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './CartItem.module.css'
+import { CartContext } from '../../store/cart-context';
 
 function CartItem({ item }) {
-    const { name, price, quantity } = item
+    const { updateToCart } = useContext(CartContext)
+    const { id, name, price, quantity } = item
+
+    function increaseQuatity() {
+        updateToCart(item, 1)
+    }
+    function decreaseQuantity() {
+        updateToCart(item, -1)
+    }
 
     return (
         <div className={styles['cart-item']}>
@@ -14,8 +23,8 @@ function CartItem({ item }) {
                 </div>
             </div>
             <div className={styles['actions']}>
-                <button>-</button>
-                <button>+</button>
+                <button onClick={decreaseQuantity}>-</button>
+                <button onClick={increaseQuatity}>+</button>
             </div>
         </div>
     );
