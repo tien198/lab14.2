@@ -8,15 +8,17 @@ function MealItem({ item }) {
     const { addToCart } = useContext(CartContext)
     const [amount, setAmount] = useState(0)
 
-    function onChangeVal(e) {
+    function onChangeAmount(e) {
         setAmount(e.target.value)
     }
+
     function onSubmit(e) {
         e.preventDefault()
         const addedItem = { ...item, quantity: Number(amount) }
         addToCart(addedItem, amount)
         clearInput()
     }
+
     function clearInput() {
         setAmount(0)
     }
@@ -28,7 +30,7 @@ function MealItem({ item }) {
                 <span className={styles.price}>${item.price}</span>
             </div>
             <MealItemForm onSubmit={onSubmit}>
-                <Input type='number' inputVal={amount} onChangeVal={onChangeVal} min={0} />
+                <Input label='Amount' type='number' value={amount} onChange={onChangeAmount} min={0} />
                 <button>+ Add</button>
             </MealItemForm>
         </div>

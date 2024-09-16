@@ -3,6 +3,7 @@ import styles from './Cart.module.css'
 import { CartContext } from '../../store/cart-context';
 import CartItem from './CartItem';
 import { ModalContext } from '../UI/Modal';
+import Input from './Input';
 
 function Cart(props) {
     const { items } = useContext(CartContext)
@@ -21,6 +22,12 @@ function Cart(props) {
             <div className={styles['total']}>
                 <span>Total Amount</span>
                 <span>${totalAmount}</span>
+            </div>
+            <div>
+                <Input label='Your Name' id='user-name' />
+                <Input label='Street' id='user-street' />
+                <Input label='Postal Code' id='user-postal-code' />
+                <Input label='City' id='user-city' />
             </div>
             <div className={styles['actions']}>
                 <button onClick={close}>Close</button>
