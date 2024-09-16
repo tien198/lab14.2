@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { createContext, forwardRef, useImperativeHandle, useState } from 'react';
 import { createPortal } from 'react-dom';
 // css
 import styles from './Modal.module.css'

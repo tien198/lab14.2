@@ -4,7 +4,7 @@ import { CartContext } from '../../store/cart-context';
 
 function CartItem({ item }) {
     const { updateToCart } = useContext(CartContext)
-    const { id, name, price, quantity } = item
+    const { name, price, quantity } = item
 
     function increaseQuatity() {
         updateToCart(item, 1)
