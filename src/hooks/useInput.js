@@ -15,6 +15,10 @@ export function useInput(initVal, validateFnArr) {
     function onBlur() {
         setIsEdited(true)
     }
+    function onReset() {
+        setValue('');
+        setIsEdited(false)
+    }
 
     for (let i = 0; i < validateFnArr.length; i++) {
         // call the function through loop. Passing 'value' as argument
@@ -34,7 +38,8 @@ export function useInput(initVal, validateFnArr) {
         isEdited,
         onBlur,
         isInvalid,
-        errorText
+        errorText,
+        onReset
     }
 
 }

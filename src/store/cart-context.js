@@ -6,12 +6,13 @@ export const CartContext = createContext({
     items: [{ id: 'm1', name: 'Sushi', description: 'Finest fish and veggies', price: 22.99, quantity: 1 }],
     addToCart(item, amount) { },
     updateToCart(item, amount) { },
-    removeFromCart(id) { }
+    removeFromCart(id) { },
+    resetCart() { }
 })
 
 function cartReducer(state, action) {
     const { type, payload } = action
-    const items = [...state]
+    let items = [...state]
 
     if (type === 'ADD_ITEM') {
         const { item, amount } = payload
@@ -58,6 +59,10 @@ function cartReducer(state, action) {
         const index = items.findIndex(i => i.id === itemId)
         items.splice(index, 1)
     }
+
+    else if (type === 'RESET_CART') {
+        items = [];
+    }
     return items
 }
 
@@ -93,11 +98,18 @@ export function CartProvider({ children }) {
         })
     }
 
+    function resetCart() {
+        dispathItemsState({
+            type: 'RESET_CART'
+        })
+    }
+
     const cartContext = {
         items: itemsState,
         addToCart,
         updateToCart,
-        removeFromCart
+        removeFromCart,
+        resetCart
     }
     return (
         <CartContext.Provider value={cartContext}>

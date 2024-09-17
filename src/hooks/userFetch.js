@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getMeals } from '../ultis/http';
 
 export function useFetch(initialVal) {
